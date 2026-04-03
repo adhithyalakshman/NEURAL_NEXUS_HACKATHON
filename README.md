@@ -131,31 +131,6 @@ We report the **full production metric suite** — not just accuracy.
 
 
 
----
-
-## ⚙️ Setup & Quickstart
-
-```bash
-# Clone
-git clone https://github.com/<your-org>/earthseg-imbalance.git
-cd earthseg-imbalance
-
-# Environment
-python -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
-
-# Preprocess LISS-IV imagery
-python src/preprocess.py --input data/raw/ --output data/processed/
-
-# Extract patches (with rare-class oversampling index)
-python src/dataset.py --build-index
-
-# Train
-python src/train.py --config configs/default.yaml
-
-# Evaluate
-python src/evaluate.py --checkpoint checkpoints/best.pth --split val
-```
 
 ---
 
