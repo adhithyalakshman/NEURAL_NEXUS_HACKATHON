@@ -129,40 +129,7 @@ We report the **full production metric suite** — not just accuracy.
 
 ---
 
-## 🗂️ Repository Structure
 
-```
-earthseg-imbalance/
-├── data/
-│   ├── raw/                    # LISS-IV .tif files (Bhoonidhi download)
-│   ├── processed/              # Normalised, band-stacked arrays
-│   └── patches/                # Extracted training patches
-│
-├── src/
-│   ├── dataset.py              # PatchDataset with oversampling logic
-│   ├── model/
-│   │   ├── attention_unet.py   # Attention U-Net with deep supervision
-│   │   ├── encoder.py          # Pretrained backbone adapter (4-band)
-│   │   └── heads.py            # Auxiliary + final segmentation heads
-│   ├── losses/
-│   │   ├── tversky.py          # Tversky loss (α, β configurable)
-│   │   ├── focal.py            # Focal loss (γ configurable)
-│   │   └── composite.py        # Combined loss with OHEM
-│   ├── train.py                # Training loop with OHEM + deep supervision
-│   ├── evaluate.py             # Full metric suite computation
-│   └── postprocess.py          # Connected component filtering + TTA
-│
-├── notebooks/
-│   ├── 01_eda_class_imbalance.ipynb    # Dataset analysis, imbalance quantification
-│   ├── 02_loss_ablation.ipynb          # Dice vs Focal vs Tversky comparisons
-│   └── 03_results_visualization.ipynb  # Prediction overlays, confusion matrices
-│
-├── configs/
-│   └── default.yaml            # All hyperparameters in one place
-│
-├── requirements.txt
-└── README.md
-```
 
 ---
 
