@@ -15,6 +15,20 @@ This project tackles that head-on with a multi-layer strategy spanning **loss en
 
 ---
 
+
+## 🧱 4-Layer Imbalance Strategy
+
+The system addresses class imbalance across four stacked layers, each targeting a different failure mode:
+
+| Layer | Lever | What It Fixes |
+|---|---|---|
+| **1 — Loss engineering** | Tversky + Focal + BCE composite | Penalises rare-class misses 2.3× harder; focuses gradient on hard pixels |
+| **2 — Sampling strategy** | Patch oversampling + OHEM + class weighting | Ensures minority exposure regardless of loss; masks low-signal background pixels |
+| **3 — Architecture** | Attention U-Net + deep supervision | Suppresses majority-class features in skip connections; prevents gradient starvation in early layers |
+| **4 — Evaluation discipline** | Per-class IoU, Macro IoU, AUPR | Surfaces minority class performance; excludes misleading accuracy/AUC-ROC |
+
+> Layers compound — loss alone fails if batches are 99% background; sampling alone fails if the architecture ignores rare-class boundaries.
+
 ## 🏗️ Architecture
 
 We implement a **custom Attention U-Net with deep supervision**, trained under a composite loss regime with hard example mining.
